@@ -1,7 +1,7 @@
 body{
 	padding: 0;
 	margin: 0;
-	background: radial-gradient(circle, #E4DCF1, #B492EB);
+	background: radial-gradient(circle, #E4DCF1, #512e89);
 }
 
 .container {
@@ -109,7 +109,7 @@ li {
 .divisor-vertical {
     border-left: 2px solid #000000; /* Cambia el color de la línea según lo necesites */
     height: 100%; /* Ajusta la altura según tus necesidades */
-    margin: 0 275px; /* Ajusta el margen según lo necesites */
+    margin: 0 100px; /* Ajusta el margen según lo necesites */
 }
 
 .actividad-realizada,
