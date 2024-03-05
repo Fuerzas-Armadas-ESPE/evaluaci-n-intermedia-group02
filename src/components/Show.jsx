@@ -17,6 +17,15 @@ const Show = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortKey, setSortKey] = useState('producto'); // Asumiendo que 'producto' es un campo
     const [sortOrder, setSortOrder] = useState('asc'); // 'asc' para ascendente o 'desc' para descendente
+    // Hooks para gestionar el estado de las actividades
+    const [activities, setActivities] = useState([]);
+    const [newActivity, setNewActivity] = useState('');
+    const [completedActivities, setCompletedActivities] = useState([]);
+    const [pendingActivities, setPendingActivities] = useState([]);
+    // Variable de estado para las nuevas actividades completadas
+    const [newCompletedActivity, setNewCompletedActivity] = useState('');
+    // Variable de estado para las nuevas actividades pendientes
+    const [newPendingActivity, setNewPendingActivity] = useState('');
 
     //2 - referenciamos a la DB firestore
     const productsCollection = collection(db, "inventario")
@@ -112,6 +121,53 @@ const Show = () => {
             pdf.save("download.pdf");
         });
     };
+    // Función para obtener las actividades
+    const getActivities = async () => {
+        // Aquí deberías obtener las actividades relacionadas con cada tema del curso desde tu base de datos
+        // Por simplicidad, aquí estamos simulando datos de ejemplo
+        const exampleCompletedActivities = [
+            { id: 1, description: 'Actividad completada 1' },
+            // Agrega más actividades completadas si es necesario
+        ];
+        const examplePendingActivities = [
+            { id: 3, description: 'Actividad pendiente 1' },
+            // Agrega más actividades pendientes si es necesario
+        ];
+        setCompletedActivities(exampleCompletedActivities);
+        setPendingActivities(examplePendingActivities);
+    };
+
+    // Función para agregar una nueva actividad pendiente
+    const addPendingActivity = () => {
+        const newPendingActivityObject = { id: pendingActivities.length + 1, description: newPendingActivity };
+        setPendingActivities([...pendingActivities, newPendingActivityObject]);
+        setNewPendingActivity('');
+    };
+
+    // Función para eliminar una actividad
+    const deleteActivity = async (activityType, id) => {
+        if (activityType === 'completed') {
+            // Aquí deberías agregar la lógica para eliminar una actividad completada de tu base de datos
+            // Por simplicidad, aquí estamos simulando la eliminación de una actividad completada
+            const updatedCompletedActivities = completedActivities.filter(activity => activity.id !== id);
+            setCompletedActivities(updatedCompletedActivities);
+        } else if (activityType === 'pending') {
+            // Aquí deberías agregar la lógica para eliminar una actividad pendiente de tu base de datos
+            // Por simplicidad, aquí estamos simulando la eliminación de una actividad pendiente
+            const updatedPendingActivities = pendingActivities.filter(activity => activity.id !== id);
+            setPendingActivities(updatedPendingActivities);
+        }
+    };
+
+    const addCompletedActivity = () => {
+        const newCompletedActivityObject = { id: completedActivities.length + 1, description: newCompletedActivity };
+        setCompletedActivities([...completedActivities, newCompletedActivityObject]);
+        setNewCompletedActivity('');
+    };
+
+    useEffect(() => {
+        getActivities();
+    }, []);
 
     return (
         <>
@@ -119,14 +175,14 @@ const Show = () => {
                 <div className='row'>
                     <div className='col'>
                         <div className="d-grid gap-2">
-                        <Link to="/create" className='btn btn-primary btn-sm-small mt-2 mb-2'>Nuevo <i class="fa-solid fa-plus"></i></Link>
-                        <button onClick={downloadPdf} className="btn btn-success btn-sm-small">Descargar <i class="fa-solid fa-file-pdf"></i></button>
+                            <Link to="/create" className='btn btn-primary btn-sm-small mt-2 mb-2'>Nuevo <i className="fa-solid fa-plus"></i></Link>
+                            <button onClick={downloadPdf} className="btn btn-success btn-sm-small">Descargar <i className="fa-solid fa-file-pdf"></i></button>
 
 
 
                         </div>
 
-                       
+
                         <table className='table table-dark table-hover'>
                             <thead>
                                 <tr>
@@ -150,6 +206,7 @@ const Show = () => {
                                         <td>
                                             <Link to={`/edit/${product.id}`} className="btn-accion btn btn-light"><i className="fa-solid fa-pencil"></i></Link>
                                             <button onClick={() => { confirmDelete(product.id) }} className="btn-accion btn btn-danger"><i className="fa-solid fa-trash"></i></button>
+                                                  
                                         </td>
                                     </tr>
                                 ))}
@@ -158,7 +215,56 @@ const Show = () => {
                     </div>
                 </div>
             </div>
+
+            <div className="container" id="miTabla">
+                <div className="row">
+                    <div className="col">
+                        {/* Actividades realizadas */}
+                        <div className="activity-column">
+                            <h2>Actividades realizadas</h2>
+                            <br />
+                            <ul>
+                                {completedActivities.map(activity => (
+                                    <li key={activity.id} className="actividad-realizada">
+                                        <span>{activity.description}</span>
+                                        <button className="btn-eliminar" onClick={() => deleteActivity('completed', activity.id)}>Eliminar</button>
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className="agregar-actividad">
+                                <input type="text" value={newCompletedActivity} onChange={(e) => setNewCompletedActivity(e.target.value)} style={{ marginRight: '10px' }} />
+                                <button onClick={addCompletedActivity} className="btn-agregar">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col">
+                        {/* Línea vertical que divide las secciones */}
+                        <div className="divisor-vertical"></div>
+                    </div>
+                    <div className="col">
+                        {/* Actividades pendientes */}
+                        <div className="activity-column">
+                            <h2>Actividades pendientes</h2>
+                            <br />
+                            <ul>
+                                {pendingActivities.map(activity => (
+                                    <li key={activity.id} className="actividad-pendiente">
+                                        <span>{activity.description}</span>
+                                        <button className="btn-eliminar" onClick={() => deleteActivity('pending', activity.id)}>Eliminar</button>
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className="agregar-actividad">
+                                <input type="text" value={newPendingActivity} onChange={(e) => setNewPendingActivity(e.target.value)} style={{ marginRight: '10px' }} />
+                                <button onClick={addPendingActivity} className="btn-agregar">Agregar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </>
+
     )
 }
 
