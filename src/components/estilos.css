@@ -1,0 +1,93 @@
+body{
+	padding: 0;
+	margin: 0;
+	background: radial-gradient(circle, #E4DCF1, #B492EB);
+}
+
+.container {
+    margin-top: 20px;
+  }
+  
+.btn {
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin: 0 auto;
+  }
+  
+  .btn-sm-small {
+    margin-bottom: 1rem;
+    padding: 6px 10px;
+    font-size: 14px;
+    width: 200px;
+    font-weight: bold;
+  }
+
+  .btn-accion{
+    margin: 5px;
+  }
+
+  .buscador{
+    height: 40px;
+    margin-left: 10px;
+    border-radius: 7px;
+  }
+
+  .ascdes{
+    margin-top: -5px;
+  }
+  
+  .search-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .search-container input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .search-container select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .search-container button {
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table td,
+  .table th {
+    text-align: center;
+    padding: 12px;
+    border: 1px solid #ddd;
+  }
+  
+  .table th {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .action-buttons i {
+    margin-right: 5px;
+  }
+  
