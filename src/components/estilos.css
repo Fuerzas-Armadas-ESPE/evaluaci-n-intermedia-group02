@@ -1,7 +1,7 @@
 body{
 	padding: 0;
 	margin: 0;
-	background: radial-gradient(circle, #E4DCF1, #B492EB);
+	background: radial-gradient(circle, #E4DCF1, #512e89);
 }
 
 .container {
@@ -91,3 +91,50 @@ body{
     margin-right: 5px;
   }
   
+  .btn-eliminar {
+    background-color: #dc3545; /* Color de fondo rojo */
+    color: white; /* Color del texto blanco */
+    padding: 5px 10px; /* Ajustar el padding según sea necesario */
+    font-size: 12px; /* Tamaño de fuente más pequeño */
+    margin-left: 10px; /* Margen izquierdo para separar del input */
+}
+
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.divisor-vertical {
+    border-left: 2px solid #000000; /* Cambia el color de la línea según lo necesites */
+    height: 100%; /* Ajusta la altura según tus necesidades */
+    margin: 0 100px; /* Ajusta el margen según lo necesites */
+}
+
+.actividad-realizada,
+.actividad-pendiente {
+    margin-bottom: 10px; /* Ajusta el margen inferior según tus necesidades */
+}
+
+.agregar-actividad {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.agregar-actividad input[type="text"] {
+  flex: 1;
+  padding: 5px;
+}
+
+.btn-agregar {
+  background-color: #3bb10c; /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px; /* Ajustar el padding según sea necesario */
+  font-size: 12px; /* Tamaño de fuente más pequeño */
+   margin-left: 10px;
+}

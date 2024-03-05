@@ -23,11 +23,11 @@ const Login = () => {
                 <h2>Ingreso Docentes</h2>
                 <div className="form-group">
                     <label htmlFor="email">Usuario</label>
-                    <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                    <input type="text" id="email" placeholder='Docente' value={email} onChange={(e) => setEmail(e.target.value)} required />
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Contraseña</label>
-                    <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                    <input type="password" id="password" placeholder='123' value={password} onChange={(e) => setPassword(e.target.value)} required />
                 </div>
                 <button type="submit" className="btn-login">Ingresar</button>
             </form>
