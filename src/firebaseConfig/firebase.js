@@ -1,16 +1,18 @@
+// https://firebase.google.com/docs/web/setup#available-libraries
+import {getFirestore} from '@firebase/firestore';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import {getFirestore} from '@firebase/firestore';
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCNIJseUFFJwQKET-I9pN468Su66py0ubs",
-  authDomain: "inventario-grupo02-ba08d.firebaseapp.com",
-  projectId: "inventario-grupo02-ba08d",
-  storageBucket: "inventario-grupo02-ba08d.appspot.com",
-  messagingSenderId: "1049785973528",
-  appId: "1:1049785973528:web:1e98f66135c5c0e88dbc6d"
+  apiKey: "AIzaSyBFV3qybOWMrZ1dWG4aduvVNbrtqiaaboA",
+  authDomain: "inventario-grupo02.firebaseapp.com",
+  projectId: "inventario-grupo02",
+  storageBucket: "inventario-grupo02.appspot.com",
+  messagingSenderId: "771284447347",
+  appId: "1:771284447347:web:935d96a1419bc79bbafa06"
 };
 
 // Initialize Firebase
